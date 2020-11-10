@@ -1,20 +1,13 @@
-import React, { useContext, useState, forwardRef } from "react";
+import React, { useContext, useState } from "react";
 
-const getId = (() => {
-  let id = 1;
-  return () => id++;
-})();
+let id = 1;
 
 const AccessibleInputContext = React.createContext();
 
-export function AccessibleInputForm({ children, ...props }) {
-  return <form {...props}>{children}</form>;
-}
-
 export function AccessibleInputContainer({ children, ...props }) {
-  const [field_id] = useState(getId());
-  const [helper_id] = useState(getId());
-  const [error_id] = useState(getId());
+  const [field_id] = useState(id++);
+  const [helper_id] = useState(id++);
+  const [error_id] = useState(id++);
 
   return (
     <AccessibleInputContext.Provider value={{ field_id, helper_id, error_id }}>
